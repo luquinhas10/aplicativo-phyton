@@ -1,7 +1,9 @@
 import os
 
-restaurantes = ['chuchus house','lamen ichiraku']
-
+restaurantes = [{'nome': 'chuchus house','categoria':'alimento','ativo':False},
+                {'nome':'chuchus house','categoria':'verdura','ativo':True},
+                {'nome':'pancada sushi','categoria':'sushi','ativo':False}
+                ]                         
 def exibir_nome_do_programa():
         print(""" LAMEN DO ICHIRAKU 
               """)
@@ -27,21 +29,30 @@ def opcao_invalida():
 
 def exibir_subtitulo(texto):
         os.system('clear')
+        linha = '*' * (len(texto))
+        print(linha)
         print(texto)
+        print(linha)
         print()
 
 def cadastrar_novo_restaurante():
         exibir_subtitulo('cadastro do novo restaurante')
         nome_do_restaurante = input('digite o nome do novo restaurante')
-        restaurantes.append(nome_do_restaurante) 
+        categoria = input(f'digite a categoria do restaurante {nome_do_restaurante}:')
+        dado_do_restaurante ={'nome':nome_do_restaurante,'categoria':categoria,'ativo':False}
+        restaurantes.append(dado_do_restaurante)
         print(f'o restaurante{nome_do_restaurante} foi cadastrado com sucesso!')
         voltar_ao_menu_principal()
 
 def listar_restaurante():
       exibir_subtitulo('listando os restaurantes')
 
+      print(f'{"nome do restaurante".ljust(22)}| {"categoria".ljust(20)} | status ')
       for restaurante in restaurantes:
-            print(f'*{restaurantes}')
+            nome_restaurante = restaurante['nome']
+            categoria = restaurante['categoria']
+            ativo = 'ativado' if restaurante['ativo'] else 'desativado'
+            print(f'- {nome_restaurante.ljust(20)} | {categoria.ljust(20)}| {ativo}')
 
       voltar_ao_menu_principal()
 
@@ -70,5 +81,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-   
