@@ -56,6 +56,17 @@ def listar_restaurante():
 
       voltar_ao_menu_principal()
 
+def alternar_estado_restaurante():
+      exibir_subtitulo('alternando estado do restaurante')
+      nome_restaurante = input('digite o nome do restaurante que deseja alterar o estado:')
+      restaurante_encontrado = False 
+
+      for restaurante in restaurantes:
+            if nome_restaurante == restaurante['nome']:
+                  restaurante_encontrado = True
+                  restaurante['ativo'] = not restaurante['nome']
+                  mensagem  = f'o restaurante {nome_restaurante} foi avisado com sucesso' if restaurante['ativo']                  else f'o restaurante {nome_restaurante} foi desativado com sucesso'
+
 def escolher_opcao():
  try:
         opcao_escolhida = int(input('escolha uma opção'))
